@@ -2,6 +2,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import ToastProvider from "@/providers/ToastProvider";
+import SessionProvider from "@/providers/SessionProvider";
 
 type Props = {
   children: React.ReactNode;
@@ -31,10 +34,16 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} dir={isRTL ? "rtl" : "ltr"}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <SessionProvider>
+          <NextIntlClientProvider messages={messages}>
+            <ReactQueryProvider>
+              {children}
+              <ToastProvider />
+            </ReactQueryProvider>
+          </NextIntlClientProvider>
+        </SessionProvider>
       </body>
     </html>
   );
-}
+}
+
