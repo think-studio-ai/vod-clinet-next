@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import ToastProvider from "@/providers/ToastProvider";
 import SessionProvider from "@/providers/SessionProvider";
+import AuthProvider from "@/store/AuthContext";
 
 type Props = {
   children: React.ReactNode;
@@ -32,18 +33,18 @@ export default async function LocaleLayout({ children, params }: Props) {
   const isRTL = locale === "ar";
 
   return (
-    <html lang={locale} dir={isRTL ? "rtl" : "ltr"}>
-      <body>
-        <SessionProvider>
-          <NextIntlClientProvider messages={messages}>
-            <ReactQueryProvider>
+    <div dir={isRTL ? "rtl" : "ltr"} className="flex-1">
+      <SessionProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ReactQueryProvider>
+            <AuthProvider>
               {children}
-              <ToastProvider />
-            </ReactQueryProvider>
-          </NextIntlClientProvider>
-        </SessionProvider>
-      </body>
-    </html>
+            </AuthProvider>
+            <ToastProvider />
+          </ReactQueryProvider>
+        </NextIntlClientProvider>
+      </SessionProvider>
+    </div>
   );
 }
 

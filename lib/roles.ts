@@ -1,11 +1,11 @@
 export enum Role {
-  ADMIN = "admin",
+  // ADMIN = "admin",
   USER = "user",
   GUEST = "guest",
 }
 
 export const rolePermissions: Record<Role, string[]> = {
-  [Role.ADMIN]: ["read", "write", "delete", "manage"],
+  // [Role.ADMIN]: ["read", "write", "delete", "manage"],
   [Role.USER]: ["read", "write"],
   [Role.GUEST]: ["read"],
 };
