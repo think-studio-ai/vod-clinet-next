@@ -34,3 +34,54 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+
+
+
+
+
+
+
+<!-- Folder Structer -->
+app/
+├── [locale]/
+│   ├── (website)/
+│   │   ├── page.tsx          ✅ existed
+│   │   ├── about/            ✅ existed
+│   │   └── products/         🆕 page.tsx
+│   │
+│   ├── (user)/               🆕
+│   │   ├── layout.tsx
+│   │   ├── dashboard/page.tsx
+│   │   ├── bookings/page.tsx
+│   │   └── profile/page.tsx
+│   │
+│   └── (auth)/               🆕
+│       ├── login/page.tsx
+│       └── register/page.tsx
+│
+├── api/
+│   └── auth/
+│       └── [...nextauth]/    🆕 route.ts
+│
+└── layout.tsx                ✅ existed
+
+components/
+└── layout/
+    ├── Navbar.tsx            🆕
+    └── Sidebar.tsx           🆕
+
+features/
+├── auth/index.ts             🆕
+├── products/index.ts         🆕
+├── bookings/index.ts         🆕
+└── users/index.ts            🆕
+
+lib/
+├── utils.ts                  ✅ existed
+├── axios.ts                  🆕 (pre-configured Axios instance)
+├── auth.ts                   🆕 (NextAuthOptions config)
+└── roles.ts                  🆕 (Role enum + permission helpers)
+<!-- _______________________________________    -->
